@@ -1,7 +1,3 @@
-
-
-
-
 document.querySelector(".button-container").addEventListener("click", () => {
     let text = document.getElementById("filter-jobs").value;
     getJobs().then(jobs => {
@@ -9,6 +5,38 @@ document.querySelector(".button-container").addEventListener("click", () => {
         showJobs(filteredJobs)
     })
 })
+
+function toggleMode() {
+    let toggle = document.getElementById("colorMode").checked;
+    var r = document.querySelector(':root')
+    if (toggle) {
+        r.style.setProperty('--theme-bg-color', 'white');
+        r.style.setProperty('--theme-color', '#11121A');
+        r.style.setProperty('--bg-color', 'white');
+        r.style.setProperty('--border-color', '#1C1C24');
+        r.style.setProperty('--search-border-color', '#222328');
+    } else {
+        r.style.setProperty('--theme-bg-color', '#11121A');
+        r.style.setProperty('--theme-color', 'white');
+        r.style.setProperty('--bg-color', '#1C1C24');
+        r.style.setProperty('--border-color', 'white');
+        r.style.setProperty('--search-border-color', 'white');
+        
+    }
+}
+
+function switchViewMode(mode) {
+    let jobsContainer = document.querySelector(".jobs-container")
+    let jobTiles = document.querySelectorAll(".job-tile");
+
+    if (mode === "grid") {
+        jobsContainer.style.setProperty('display', 'grid');
+        jobTiles.forEach(jobTile => jobTile.style.setProperty('margin-bottom', '0'))
+    } else {
+        jobsContainer.style.setProperty('display', 'inline-block');
+        jobTiles.forEach(jobTile => jobTile.style.setProperty('margin-bottom', '40px'))
+    }
+}
 
 function getJobs() {
     return fetch("data.json")
@@ -39,9 +67,9 @@ function filterJobs(jobs, searchText) {
 }
 
 function showJobs(jobs) {
-    console.log(jobs)
     let jobsContainer = document.querySelector(".jobs-container");
     let jobsHTML = "";
+    document.getElementById("number-of-jobs").innerHTML = `Showing ${jobs.length} Jobs`
     jobs.forEach(job => {
         jobsHTML += `
             <div class="job-tile">

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>STA Job Portal</title>
+    <link rel="icon" href="./assets/imgs/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="./css/style.css">
@@ -14,13 +15,23 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="logo">
-                <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png"
-                    alt="">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="./assets/imgs/logo.jpg" alt="">
+                </div>
+                <span>
+                    STA Jobs
+                </span>
             </div>
-            <span>
-                Clever Jobs
-            </span>
+            <div class="toggle-container">
+                <span>
+                    Light/Dark Mode
+                </span>
+                <label class="switch">
+                    <input type="checkbox" id="colorMode" onchange="toggleMode()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
     </header>
     <div class="search">
@@ -35,7 +46,13 @@
         </div>
     </div>
     <div class="jobs-list">
-        <h1>Showing 15 Jobs</h1>
+        <div class="jobs-header-container">
+            <h1 id="number-of-jobs">Showing 15 Jobs</h1>
+            <div class="view-mode">
+                <i class="fas fa-th" id="grid" onClick="switchViewMode('grid')"></i>
+                <i class="fas fa-list" id="list" onClick="switchViewMode('list')"></i>
+            </div>
+        </div>
         <div class="jobs-container">
         </div>
     </div>
